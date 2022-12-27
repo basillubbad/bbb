@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <p>13ضبط انظمه</p>
+  <textarea name="" id="" cols="40" rows="20">
+     import java.util.*;
+import java.io.*;
+import java.util.Scanner;
+
+
+public class ISBNNumberExample {
+static boolean checkISBNNumber(long number){
+    int sum=0;
+    int i,t,intNumber,dNumber;
+    String strNumber;
+    strNumber=""+number;
+if(strNumber.length()!=13){
+    return false;
+}
+for(i=0;i<strNumber.length();i++){
+    intNumber=Integer.parseInt(strNumber.substring(i, i+1));
+    dNumber=i+1;
+    t=dNumber*intNumber;
+    sum=sum+t;
+}
+System.out.println(sum);
+if((sum%10)==0){
+    return true;
+}
+
+return false;
+}
+
+public static void main(String args[]){
+    long n1,n2;
+    try{
+        InputStreamReader in=new InputStreamReader(System.in);
+        BufferedReader br=new BufferedReader(in);
+        System.out.println("Enter First 10 digit ISBN number : ");
+        n1=Long.parseLong(br.readLine());
+
+        
+        if(checkISBNNumber(n1))
+            System.out.println(n1+"آ isآ aآ validآ ISBNآ number");
+            
+        else
+             System.out.println(n1+"isآ notآ aآ validآ ISBNآ number");
+        
+
+
+    }catch(java.lang.Exception e){
+        System.out.println("Errorآ whileآ readingآ theآ data.");
+    }
+    }
+} 
+
+
+  </textarea>  
+  ///////////
+  <p>10ضبط انظمه</p>
+  <textarea name="" id="" cols="40" rows="20">
+    import java.util.*;
+import java.io.*;
+import java.util.Scanner;
+
+
+public class ISBNNumberExample {
+static boolean checkISBNNumber(int number []){
+    int sum=0;
+    int i,t,intNumber,dNumber;
+if(number.length!=10){
+    return false;
+}
+for(i=0;i<number.length;i++){
+    intNumber=number[i];
+    dNumber=i+1;
+    t=dNumber*intNumber;
+    sum=sum+t;
+}
+System.out.println(sum);
+if((sum%11)==0){
+    return true;
+}
+
+return false;
+}
+
+public static void main(String args[]){
+    int n3[]=new int[10];
+    long n1,n2;
+    try{
+        Scanner in=new Scanner(System.in);
+        for(int j=0;j<10;j++){
+        System.out.print("Enter The digit "+(j+1)+" From 10 digit ISBN number : ");
+        n3[j]=in.nextInt();
+        }
+        
+        if(checkISBNNumber(n3))
+            System.out.println("آ isآ aآ validآ ISBNآ number");
+            
+        else
+             System.out.println("isآ notآ aآ validآ ISBNآ number");
+        
+
+
+    }catch(java.lang.Exception e){
+        System.out.println("Errorآ whileآ readingآ theآ data.");
+    }
+    }
+}
+
+
+  </textarea>  
+    <form>
+      <i class="fas fa-paper-plane"></i>
+
+      <div class="input-group">
+        <label>Full Name |</label>
+        <input type="text" placeholder="Enter your name" id="contact-name" onkeyup="validatename()" >
+        <span id="name-error"></span>
+      </div>
+
+      <!-- <div class="input-group">
+        <label>Phone No.|</label>
+        <input type="tel" placeholder="123 456 7890" id="contact-phone" onkeyup="validatephone()">
+        <span id="phone-error"></span>
+      </div> -->
+
+      <div class="input-group">
+        <label>Email |</label>
+        <input type="email" placeholder="Enter your Email" id="contact-email" onkeyup="validateemail()">
+        <span id="email-error"></span>
+      </div>   
+
+      <div class="input-group">
+        <label>Password |</label>
+       <input type="password" name="password" id="password">
+        <!-- <textarea rows="5" placeholder="Enter your message"></textarea> -->
+        <span id="message-error"></span> 
+      </div>
+
+    <button >Submit</button>
+    <span id="submit-error"></span>
+   
+  </form>
+
+  </div>
+  
+   <script src="./sc20.js">
+    
+   </script>
+</body>
+</html>
