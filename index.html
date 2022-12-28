@@ -8,148 +8,153 @@
 </head>
 <body>
   <div class="container">
-    <p>13ضبط انظمه</p>
+    <p>senglton</p>
   <textarea name="" id="" cols="40" rows="20">
-     import java.util.*;
-import java.io.*;
-import java.util.Scanner;
-
-
-public class ISBNNumberExample {
-static boolean checkISBNNumber(long number){
-    int sum=0;
-    int i,t,intNumber,dNumber;
-    String strNumber;
-    strNumber=""+number;
-if(strNumber.length()!=13){
-    return false;
+  class A{
+private static A obj=new A();//Early, instance will be
+created at load time
+private A(){}
+public static A getA(){
+return obj;
 }
-for(i=0;i<strNumber.length();i++){
-    intNumber=Integer.parseInt(strNumber.substring(i, i+1));
-    dNumber=i+1;
-    t=dNumber*intNumber;
-    sum=sum+t;
-}
-System.out.println(sum);
-if((sum%10)==0){
-    return true;
-}
-
-return false;
-}
-
-public static void main(String args[]){
-    long n1,n2;
-    try{
-        InputStreamReader in=new InputStreamReader(System.in);
-        BufferedReader br=new BufferedReader(in);
-        System.out.println("Enter First 10 digit ISBN number : ");
-        n1=Long.parseLong(br.readLine());
-
-        
-        if(checkISBNNumber(n1))
-            System.out.println(n1+"آ isآ aآ validآ ISBNآ number");
-            
-        else
-             System.out.println(n1+"isآ notآ aآ validآ ISBNآ number");
-        
-
-
-    }catch(java.lang.Exception e){
-        System.out.println("Errorآ whileآ readingآ theآ data.");
-    }
-    }
-} 
-
+public void doSomething(){
+//write your code
+} }
+class A{
+private static A obj;
+private A(){}
+public static A getA(){
+if (obj == null){
+synchronized(Singleton.class){
+if (obj == null){
+obj = new Singleton();//instance will be created
+at request time
+} } }
+return obj; }
+public void doSomething(){ //write your code } }
 
   </textarea>  
   ///////////
-  <p>10ضبط انظمه</p>
+    <p>نمط النموذج األولي</p>
   <textarea name="" id="" cols="40" rows="20">
-    import java.util.*;
+  class EmployeeRecord implements Prototype{
+private int id;
+private String name, designation;
+private double salary;
+private String address;
+public EmployeeRecord(){
+System.out.println(" Employee Records of Oracle Corporation ");
+System.out.println("---------------------------------------------");
+System.out.println("Eid"+"\t"+"Ename"+"\t"+"Edesignation"+"\t"+
+"Esalary"+"\t\t"+"Eaddress"); }
+public EmployeeRecord(int id, String name, String designation, dou
+ble salary, String address) {
+this();
+this.id = id;
+this.name = name;
+this.designation = designation;
+this.salary = salary;
+this.address = address; }
+public void showRecord(){ System.out.println(id+"\t"+name+"
+\t"+designation+"\t"+salary+"\t"+address); }
+@Override
+public Prototype getClone() {
+return new EmployeeRecord(id,name,designation,salary,address);
+} }//End of EmployeeRecord class.
+File: PrototypeDemo.java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+class PrototypeDemo{
+public static void main(String[] args) throws IOException {
+BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
+System.out.print("Enter Employee Id: ");
+int eid=Integer.parseInt(br.readLine());
+System.out.print("\n");
+System.out.print("Enter Employee Name: ");
+String ename=br.readLine();
+System.out.print("\n");
+System.out.print("Enter Employee Designation: ");
+String edesignation=br.readLine();
+System.out.print("\n");
+System.out.print("Enter Employee Address: ");
+String eaddress=br.readLine();
+System.out.print("\n");
+System.out.print("Enter Employee Salary: ");
+double esalary= Double.parseDouble(br.readLine());
+System.out.print("\n");
+EmployeeRecord e1=new EmployeeRecord(eid,ename,edesignation,esalary,eaddress);
+e1.showRecord();
+System.out.println("\n");
+EmployeeRecord e2=(EmployeeRecord) e1.getClone();
+e2.showRecord();
+}
+}
+
+  </textarea> \
+     /////////////////////////
+      <p>نمط أسلوب المصنع</p>
+  <textarea name="" id="" cols="40" rows="20">
 import java.io.*;
-import java.util.Scanner;
-
-
-public class ISBNNumberExample {
-static boolean checkISBNNumber(int number []){
-    int sum=0;
-    int i,t,intNumber,dNumber;
-if(number.length!=10){
-    return false;
+abstract class Plan{
+protected double rate;
+abstract void getRate();
+public void calculateBill(int units){
+System.out.println(units*rate);
 }
-for(i=0;i<number.length;i++){
-    intNumber=number[i];
-    dNumber=i+1;
-    t=dNumber*intNumber;
-    sum=sum+t;
 }
-System.out.println(sum);
-if((sum%11)==0){
-    return true;
+      class DomesticPlan extends Plan{
+//@override
+public void getRate(){
+rate=3.50;
+} }
+
+{
+//@override
+public void getRate(){
+rate=7.50;
 }
-
-return false;
+class InstitutionalPlan extends Plan
+{
+//@override
+public void getRate(){
+rate=5.50;
 }
-
-public static void main(String args[]){
-    int n3[]=new int[10];
-    long n1,n2;
-    try{
-        Scanner in=new Scanner(System.in);
-        for(int j=0;j<10;j++){
-        System.out.print("Enter The digit "+(j+1)+" From 10 digit ISBN number : ");
-        n3[j]=in.nextInt();
-        }
-        
-        if(checkISBNNumber(n3))
-            System.out.println("آ isآ aآ validآ ISBNآ number");
-            
-        else
-             System.out.println("isآ notآ aآ validآ ISBNآ number");
-        
-
-
-    }catch(java.lang.Exception e){
-        System.out.println("Errorآ whileآ readingآ theآ data.");
-    }
-    }
+      public Plan getPlan(String planType){
+if(planType == null){ return null; }
+if(planType.equalsIgnoreCase("DOMESTICPLAN")) {
+return new DomesticPlan();
 }
+else if(planType.equalsIgnoreCase("COMMERCIALPLAN")){
+return new CommercialPlan();
+}
+else if(planType.equalsIgnoreCase("INSTITUTIONALPLAN")) {
+return new InstitutionalPlan();
+}
+return null; } }
+
+
+class GenerateBill{
+public static void main(String args[])throws IOException{
+GetPlanFactory planFactory = new GetPlanFactory();
+System.out.print("Enter the name of plan for which the bill
+will be generated: ");
+BufferedReader br=new BufferedReader(new InputStream
+Reader(System.in));
+String planName=br.readLine();
+System.out.print("Enter the number of units for bill will be
+calculated: ");
+int units=Integer.parseInt(br.readLine());
+Plan p = planFactory.getPlan(planName);
+//call getRate() method and calculateBill()method of Dome
+sticPaln.
+System.out.print("Bill amount for "+planName+" of "+uni
+ts+" units is: ");
+p.getRate();
+p.calculateBill(units); }
 
 
   </textarea>  
-    <form>
-      <i class="fas fa-paper-plane"></i>
-
-      <div class="input-group">
-        <label>Full Name |</label>
-        <input type="text" placeholder="Enter your name" id="contact-name" onkeyup="validatename()" >
-        <span id="name-error"></span>
-      </div>
-
-      <!-- <div class="input-group">
-        <label>Phone No.|</label>
-        <input type="tel" placeholder="123 456 7890" id="contact-phone" onkeyup="validatephone()">
-        <span id="phone-error"></span>
-      </div> -->
-
-      <div class="input-group">
-        <label>Email |</label>
-        <input type="email" placeholder="Enter your Email" id="contact-email" onkeyup="validateemail()">
-        <span id="email-error"></span>
-      </div>   
-
-      <div class="input-group">
-        <label>Password |</label>
-       <input type="password" name="password" id="password">
-        <!-- <textarea rows="5" placeholder="Enter your message"></textarea> -->
-        <span id="message-error"></span> 
-      </div>
-
-    <button >Submit</button>
-    <span id="submit-error"></span>
-   
-  </form>
 
   </div>
   
