@@ -10,152 +10,197 @@
   <div class="container">
     <p>senglton</p>
   <textarea name="" id="" cols="40" rows="20">
-  class A{
-private static A obj=new A();//Early, instance will be
-created at load time
-private A(){}
-public static A getA(){
-return obj;
+ ////////أمثلة السؤال الاول//////////
+
+<?php
+
+جملة طباعة
+echo "hello";
+مجموع رقمين
+function exa(){
+    $a=20;
+    $s=5;
+    return $a+$s;
 }
-public void doSomething(){
-//write your code
-} }
-class A{
-private static A obj;
-private A(){}
-public static A getA(){
-if (obj == null){
-synchronized(Singleton.class){
-if (obj == null){
-obj = new Singleton();//instance will be created
-at request time
-} } }
-return obj; }
-public void doSomething(){ //write your code } }
+echo exa();
+
+
+طباعة الاحرف صغيرة
+
+function omo(){
+    $string = 'HELLO';
+    return strtolower($string);
+
+}
+echo omo();
+طباعة الاحرف كبيرة
+function omo(){
+    $string = 'heloo';
+    return strtoupper($string);
+
+}
+echo omo();
+جمع متغييرين وضربهم بثالث
+
+function ex($a,$b,$s){
+    return ($a+$b)*$s;
+
+}
+echo ex(2.3.4);
+
+مساحة المثلث
+
+function ex3($a,$d){
+    return 0.5*$a*$d;
+}
+echo (2,3);
+
+
+مساحة المريع
+
+function ex3($a,$d){
+    return $a*$d;
+}
+echo (2,3);
+
+جمع رقمين مع استخدام قيمة افتراضية
+
+function exa($a=10,$s=5)(
+    return $a+$s;
+
+)
+echo exa();
+
+
+باقي القسمة
+
+function esa($f,$g){
+    return $f%$g;
+}
+echo esa(11,10);
+
+//////////////////////////////////////////////////////////////////
+أمثلة السؤال الثاني/////////////
+
+طباعة تقديرالعلامة
+
+function getNum($a){
+    if($a>=90){
+        return 'ممتاز';
+}
+    elseif($a>=80){
+        return 'جيد جدا';
+    }
+    elseif($a>=70){
+        return 'جيد';
+    }
+    elseif($a>=60){
+        return 'مقبول';
+    }
+    else($a<50){
+        return 'راسب';
+    }
+}
+طباعة مصفوفة
+$myArr = array(10 ,12.6 , "username");
+echo array();
+
+تقطيع النص وتحويله الى مصفوفة
+
+$string = 'this is a string';
+$arry = explode(' ',$string);
+print_r($arry);
+
+
+
+
+
+
+البحث داخل مصفوفة
+
+$array = array ('sy', 'eg', 'lb' ,'sa');
+if (in_arrat('sa', $array)==true){
+    echo 'sa is found in $array array <br>';
+
+}
+if (in_arrat('fr', $array)==false){
+    echo 'fr in not found in $array array <br>';
+}
+
+قلب مصفوفة 
+
+$array = array(1 ,2 , 3 , 4);
+$new_array = array_reverse($array);
+print_r($new_array);
+
+
+ازالة التكرار من المصفوفة
+
+
+$array = array ('sy' ,'lb', 'sy', 'lb');
+$new_array = array_unique($array);
+echo ' the first array is :';
+print_r($array);
+echo '<br> the "unique" one :';
+print_r($new_array);
+
+
+ترتيب المصفوفة
+
+$array = array (123,1,12,'name'=>'sy','eg');
+print_r($array);
+asort($array);
+echo '<br>';
+print_r($array);
+
+//////////////////////////////////
+السؤال الثالث//////////////////////////////
+if(isset($_GET['action']) and $_GET['action'] == 'submit')
+{
+    if(isset($_POST['username']) and $_POST['username'] != null)
+    {
+        // $username = preg_replace('/[^a-zA-Z0-9._-]/','',
+        // $_POST['username']);
+        
+           
+
+                $_SESSION['username'] = $_POST['username'];
+
+                   header("location:index.php");
+                    exit();
+
+            }
+            
+    
+    else
+    {
+        echo "<h3 style='color:#F33;'>الحقول جميع ملئ يرجى>h3>";
+    }
+}
+
+
+///////////////////////////////////////
+فحص السيشن/////////////////////////
+header('Content-Type: text/html; charset=utf-8');
+session_start();
+if (isset($_SESSION['username']) AND $_SESSION['username'] != '')
+{
+header("location:index.php");
+exit();
+}
+
+else{
+    header("location:index2.php");
+    exit();
+}
+/////////////////////////////////
+
+
+
+
 
   </textarea>  
-  ///////////
-    <p>نمط النموذج األولي</p>
-  <textarea name="" id="" cols="40" rows="20">
-  class EmployeeRecord implements Prototype{
-private int id;
-private String name, designation;
-private double salary;
-private String address;
-public EmployeeRecord(){
-System.out.println(" Employee Records of Oracle Corporation ");
-System.out.println("---------------------------------------------");
-System.out.println("Eid"+"\t"+"Ename"+"\t"+"Edesignation"+"\t"+
-"Esalary"+"\t\t"+"Eaddress"); }
-public EmployeeRecord(int id, String name, String designation, dou
-ble salary, String address) {
-this();
-this.id = id;
-this.name = name;
-this.designation = designation;
-this.salary = salary;
-this.address = address; }
-public void showRecord(){ System.out.println(id+"\t"+name+"
-\t"+designation+"\t"+salary+"\t"+address); }
-@Override
-public Prototype getClone() {
-return new EmployeeRecord(id,name,designation,salary,address);
-} }//End of EmployeeRecord class.
-File: PrototypeDemo.java
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-class PrototypeDemo{
-public static void main(String[] args) throws IOException {
-BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
-System.out.print("Enter Employee Id: ");
-int eid=Integer.parseInt(br.readLine());
-System.out.print("\n");
-System.out.print("Enter Employee Name: ");
-String ename=br.readLine();
-System.out.print("\n");
-System.out.print("Enter Employee Designation: ");
-String edesignation=br.readLine();
-System.out.print("\n");
-System.out.print("Enter Employee Address: ");
-String eaddress=br.readLine();
-System.out.print("\n");
-System.out.print("Enter Employee Salary: ");
-double esalary= Double.parseDouble(br.readLine());
-System.out.print("\n");
-EmployeeRecord e1=new EmployeeRecord(eid,ename,edesignation,esalary,eaddress);
-e1.showRecord();
-System.out.println("\n");
-EmployeeRecord e2=(EmployeeRecord) e1.getClone();
-e2.showRecord();
-}
-}
-
-  </textarea> \
-     /////////////////////////
-      <p>نمط أسلوب المصنع</p>
-  <textarea name="" id="" cols="40" rows="20">
-import java.io.*;
-abstract class Plan{
-protected double rate;
-abstract void getRate();
-public void calculateBill(int units){
-System.out.println(units*rate);
-}
-}
-      class DomesticPlan extends Plan{
-//@override
-public void getRate(){
-rate=3.50;
-} }
-
-{
-//@override
-public void getRate(){
-rate=7.50;
-}
-class InstitutionalPlan extends Plan
-{
-//@override
-public void getRate(){
-rate=5.50;
-}
-      public Plan getPlan(String planType){
-if(planType == null){ return null; }
-if(planType.equalsIgnoreCase("DOMESTICPLAN")) {
-return new DomesticPlan();
-}
-else if(planType.equalsIgnoreCase("COMMERCIALPLAN")){
-return new CommercialPlan();
-}
-else if(planType.equalsIgnoreCase("INSTITUTIONALPLAN")) {
-return new InstitutionalPlan();
-}
-return null; } }
-
-
-class GenerateBill{
-public static void main(String args[])throws IOException{
-GetPlanFactory planFactory = new GetPlanFactory();
-System.out.print("Enter the name of plan for which the bill
-will be generated: ");
-BufferedReader br=new BufferedReader(new InputStream
-Reader(System.in));
-String planName=br.readLine();
-System.out.print("Enter the number of units for bill will be
-calculated: ");
-int units=Integer.parseInt(br.readLine());
-Plan p = planFactory.getPlan(planName);
-//call getRate() method and calculateBill()method of Dome
-sticPaln.
-System.out.print("Bill amount for "+planName+" of "+uni
-ts+" units is: ");
-p.getRate();
-p.calculateBill(units); }
-
-
-  </textarea>  
-
+  
   </div>
   
    <script src="./sc20.js">
